@@ -69,7 +69,7 @@ To perform initial data analysis on the fetched data, follow these steps:
 Some sample results:
 
 - Visualizing likes by media type over time
-  ![Likes Analysis by Media Type](images/likes_analysis.png)
+  ![plot](https://github.com/jerlinn/X-Insight/assets/91647085/9ae9f0f7-93c0-46f4-92db-37d35d5ef2ab)
 - Creating a calendar heatmap of liked tweets per day
   ![Number of Liked Tweets per Day](images/liked_tweets_per_day.png)
 
