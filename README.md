@@ -1,6 +1,6 @@
-# Twitter-Insight💡: Data Scraping, Analysis, Image caption and More
+# 𝕏-Insight💡: Data Scraping, Analysis, Image caption and More
 
-[中文Readme](README_zh.md)
+[中文指引](README_zh.md)
 
 This project enables you to fetch liked tweets from Twitter (using Selenium), save it to JSON and Excel files, and perform initial data analysis and image captions.	
 
@@ -21,17 +21,22 @@ Stay tuned for more updates!
 Before running the code, ensure you have the following:
 
 - Required Python libraries (listed in `requirements.txt`)
-- Get your twitter auth token (Not API key)
+- Get your Twitter auth token (Not API key)
   - Quick text instruction:
-  - - Go to your already logged-in twitter
-    - F12 (open dev tools) -> Application -> Cookies -> Twitter.com -> auth_key
-  - or follow the video demo in FAQ section.
-- GEMINI API key (optional, only needed if you want to try the image captions feature)
+  - - Go to your already logged-in Twitter
+    - `F12` (open dev tools) -> `Application` -> `Cookies` -> `Twitter.com` -> `auth_key`
+  - or follow the video demo in FAQs section.
+- GEMINI API key (*Optional, only needed if you want to try the image captions feature)
 
 ## Setup
 
-1. Clone the repository or download the project files.
-2. Install the required Python libraries by running the following command:
+1. Clone the repository (Recommend) or download the project files.
+   
+```
+git clone https://github.com/jerlinn/X-Insight
+```
+  
+2. Install the requirements:
 
 ```
 pip install -r requirements.txt
@@ -46,11 +51,11 @@ pip install -r requirements.txt
 
 To fetch data from Twitter and save it to JSON and Excel files, follow these steps:
 
-1. Open the `twitter_data_ingestion.py` file.
+1. Open `twitter_data_ingestion.py`.
 2. Modify the `fetch_tweets` function call at the bottom of the script with your desired parameters:
 
 - Set the URL of the Twitter page you want to fetch data from (e.g., `https://twitter.com/ilyasut/likes`).
-- Specify the start and end dates for the data range (in YYYY-MM-DD format).
+- Specify the start and end dates for the data range (in `YYYY-MM-DD` format).
 
 3. Run the script by executing the following command (recommend run this in IDE directly):
 
