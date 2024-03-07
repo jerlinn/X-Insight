@@ -26,7 +26,7 @@ Before running the code, ensure you have the following:
   - - Go to your already logged-in twitter
     - F12 (open dev tools) -> Application -> Cookies -> Twitter.com -> auth_key
   - or follow the video demo in FAQ section.
-- OpenAI API key (optional, only needed if you want to try the image captions feature)
+- GEMINI API key (optional, only needed if you want to try the image captions feature)
 
 ## Setup
 
@@ -40,7 +40,7 @@ pip install -r requirements.txt
 3. Open the `config.py` file and replace the placeholders with your actual API keys:
 
 - Set `TWITTER_AUTH_TOKEN` to your Twitter API authentication token.
-- Set `OPENAI_API_KEY` to your OpenAI API key.
+- Set `GEMINI_API_KEY` to your GEMINI API key. [🔑 Get your own key here.](https://aistudio.google.com/app/apikey)
 
 ## Data Ingestion
 
@@ -73,8 +73,9 @@ Some sample results:
 - Creating a calendar heatmap of liked tweets per day
   ![Number of Liked Tweets per Day](images/liked_tweets_per_day.png)
 
-3. The notebook also demonstrates how to use the OpenAI API to generate image captions for tweet images (with tweet metadata).
-   ![Sample Image Caption](images/sample_image_caption_en.jpg)
+3. The notebook also demonstrates how to use the Gemini API & Replicate API with LlaVa V1.6 to generate image captions for tweet images (with tweet metadata).
+   ![CleanShot 2024-03-07 at 23 31 26@2x](https://github.com/jerlinn/X-Insight/assets/91647085/6a80c97f-614b-4fce-b6e2-4e6c33cd5152)
+
 
 ## Sample Output
 
@@ -99,10 +100,10 @@ Feel free to explore and modify the code to suit your specific data analysis req
   - Check out this for a step-by-step guide!
     - [video demo](https://www.youtube.com/watch?v=MhKMNsbjug4)
 
-## Contributing
+## Credits
 
-Contributions to this project are welcome. If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
-
+- [AlexZhangji](https://github.com/AlexZhangji/Twitter-Insight-LLM)
+- [𝕏 @GZhan5](https://twitter.com/GZhan5)
 
 ## Acknowledgements
 
