@@ -13,6 +13,12 @@ from tenacity import retry, stop_after_attempt, wait_fixed, retry_if_exception_t
 import logging
 from config import TWITTER_AUTH_TOKEN
 
+"""
+- VS Code中通过打开文件夹的方式来运行、或者通过终端先 cd 到脚本目录，否则 data 是在用户目录，而不是 Twitter-Insight-LLM 下，保存会报错。
+- 🪜 连接不好，会漏大量消息，通过优化循环逻辑、加大重试次数和间隔解决。
+- MP4 和 Gif 拉不下来，有实现方案，待合入。
+"""
+
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
@@ -53,20 +59,17 @@ class TwitterExtractor:
                 continue
 
             row = self._process_tweet(tweet)
+            # 对于早于start_date的tweets,代码正确的做法是直接跳过该条tweet,继续获取下一条,而不是直接退出整个while循环。
             if row["date"]:
                 try:
                     date = datetime.strptime(row["date"], "%Y-%m-%d")
-
-                except ValueError as e:
-                    # infer date format
-                    logger.info(
-                        f"Value error on date format, trying another format.{row['date']}",
-                        e,
-                    )
+                except ValueError:
                     date = datetime.strptime(row["date"], "%d/%m/%Y")
 
                 if date < start_date:
-                    break
+                    # 正确做法应该是continue,而不是break
+                    self._delete_first_tweet() 
+                    continue
                 elif date > end_date:
                     self._delete_first_tweet()
                     continue
@@ -83,12 +86,13 @@ class TwitterExtractor:
         )
 
     @retry(
-        stop=stop_after_attempt(5),
+        stop=stop_after_attempt(10), #默认 5 次
         wait=wait_fixed(2),
         retry=retry_if_exception_type(TimeoutException),
     )
+    # 默认 10 秒
     def _get_first_tweet(
-        self, timeout=10, use_hacky_workaround_for_reloading_issue=True
+        self, timeout=15, use_hacky_workaround_for_reloading_issue=True
     ):
         try:
             # Wait for either a tweet or the error message to appear
@@ -309,9 +313,9 @@ class TwitterExtractor:
 if __name__ == "__main__":
     scraper = TwitterExtractor()
     scraper.fetch_tweets(
-        "https://twitter.com/GZhan5/likes",
-        start_date="2024-03-01",
-        end_date="2024-03-05",
+        "https://twitter.com/eviljer/likes",
+        start_date="2023-10-01",
+        end_date="2024-03-07",
     )  # YYYY-MM-DD format
 
     # If you just want to export to Excel, you can use the following line
